@@ -267,6 +267,9 @@ fieldset {
     width: 100%;
     margin: auto auto 1.5rem;
   }
+  fieldset legend {
+    margin-bottom: .25rem;
+  }
 
 input:not([type="checkbox"]) {
   -webkit-flex: 1 100%;
@@ -300,6 +303,7 @@ textarea {
 
 button {
   width: 49%;
+  margin-bottom: 1.5rem;
   padding: .5rem 1rem;
   color: #888;
   font-family: Oswald, sans-serif;
@@ -384,6 +388,8 @@ footer {
 footer p a {
   margin-left: .25em;
 }
+
+
 
 button::before,
 [href="/"]::before {

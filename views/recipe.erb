@@ -1,0 +1,80 @@
+<% recipe = Recipe.find(@recipe_id) %>
+
+<h2><%= recipe.title() %></h2>
+
+<section>
+  <h3>Rating</h3>
+  <span>
+    <%
+      x = recipe.rating()
+      x.times() do
+    %>
+      <i class="fa fa-star"></i>
+    <%
+      end
+
+      empty = 5 - x
+      empty.times() do
+    %>
+      <i class="fa fa-star-o"></i>
+    <% end %>
+  </span>
+  <h3>Ingredients</h3>
+    <% if recipe.ingredients.any?() %>
+    <ul>
+      <% recipe.ingredients.each() do |ingredient| %>
+      <!-- qty, unit -->
+      <li><%= ingredient %></li>
+      <% end %>
+    </ul>
+    <% else %>
+    <p>Add ingredients below.</p>
+    <% end %>
+  <h3>Instructions</h3>
+  <p><%= recipe.instructions() %></p>
+</section>
+
+
+<section>
+  <h2>Edit this recipe</h2>
+  <form action="/recipes/<%= recipe.id() %>" method="post">
+    <input name="_method" hidden value="patch">
+    <fieldset>
+      <legend>Change title</legend>
+      <label for="title">Recipe title</label>
+      <input name="title" value='<%= recipe.title() %>' />
+    </fieldset>
+    <fieldset>
+      <legend>Edit rating</legend>
+      <label for="rating">Recipe ratings</label>
+      <select name="rating">
+        <%
+          counter = 0
+          6.times() do |counter|
+            if counter == 1
+              noun = "star"
+            else
+              noun = "stars"
+            end
+
+            if counter == recipe.rating()
+        %>
+          <option value="<%= counter %>" selected><%= counter %> <%= noun %></option>
+        <% else %>
+          <option value="<%= counter %>"><%= counter %> <%= noun %></option>
+        <%
+            end
+          counter += 1
+          end
+        %>
+      </select>
+    </fieldset>
+    <fieldset>
+      <legend>Edit instructions</legend>
+      <label for="instructions">Recipe instructions</label>
+      <textarea name="instructions" placeholder="Enter your recipe instructions here."><%= recipe.instructions() %></textarea>
+    </fieldset>
+    <button type="submit">Edit Recipe</button>
+    <button type="reset">Clear form</button>
+  </form>
+</section>
