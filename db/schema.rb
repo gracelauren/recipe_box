@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20150129180426) do
   end
 
   create_table "categories_recipes", force: :cascade do |t|
-    t.integer  "id_recipes"
-    t.integer  "id_categories"
+    t.integer  "recipe_id"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20150129180426) do
   end
 
   create_table "ingredients_recipes", force: :cascade do |t|
-    t.integer  "id_ingredients"
-    t.integer  "id_recipes"
+    t.integer  "ingredient_id"
+    t.integer  "recipe_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
