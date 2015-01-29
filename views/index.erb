@@ -1,0 +1,24 @@
+<section>
+  <% if Recipe.any?() %>
+
+  <ul>
+    <% @recipes.each() do |recipe| %>
+    <li><a href="/recipes/<%= recipe.id() %>"><%= recipe.title() %></a></li>
+    <% end %>
+  </ul>
+  <% else %>
+  <p>You don't have any recipes!</p>
+  <% end %>
+</section>
+
+<section>
+  <form action="/recipes" method="post">
+    <fieldset>
+      <legend>Add a recipe</legend>
+      <label for="recipe_title">Recipe title</label>
+      <input name="recipe_title" placeholder="Recipe title" />
+    </fieldset>
+<button type="submit">Add recipe</button>
+<button type="reset">Clear form</button>
+  </form>
+</section>
