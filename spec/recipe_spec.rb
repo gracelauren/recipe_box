@@ -10,4 +10,10 @@ describe(Recipe) do
     expect(recipe1.title()).to eq("Chicken Paramesan")
   end
 
+  it("will order the recipes alphabetically") do
+    recipe1= Recipe.create({:title => "zesty chicken paramesan", :instructions => "do stuff", :rating => 3})
+    recipe2= Recipe.create({:title => "prosciutto wrapped asparagus", :instructions => "bake and fry", :rating => 5})
+    expect(Recipe.all()).to eq([recipe2, recipe1])
+  end
+
 end

@@ -4,11 +4,13 @@ class Recipe < ActiveRecord::Base
   validates(:title, {:presence => true})
   before_save(:capitalize_title)
 
+  default_scope { order('title') }
 
 private
 
     define_method(:capitalize_title) do
       self.title = self.title().titlecase()
     end
+
 
 end
