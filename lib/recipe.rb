@@ -12,5 +12,4 @@ private
       self.title = self.title().titlecase()
     end
 
-
 end

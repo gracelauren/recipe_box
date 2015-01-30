@@ -19,17 +19,54 @@
       <i class="fa fa-star-o"></i>
     <% end %>
   </span>
+
   <h3>Ingredients</h3>
-    <% if recipe.ingredients.any?() %>
-    <ul>
-      <% recipe.ingredients.each() do |ingredient| %>
-      <!-- qty, unit -->
-      <li><%= ingredient %></li>
-      <% end %>
-    </ul>
-    <% else %>
-    <p>Add ingredients below.</p>
+  <% if recipe.ingredients.any?() %>
+  <ul>
+    <% recipe.ingredients.each() do |ingredient| %>
+    <li><%= ingredient.ingredient() %></li>
     <% end %>
+  </ul>
+  <% else %>
+  <p>Add ingredients below.</p>
+  <% end %>
+  <form action="/ingredients" method="post">
+    <input hidden value="<%= recipe.id() %>" name="recipe_id">
+    <fieldset>
+      <legend>Add an ingredient</legend>
+      <label for="ingredient_qty">Quantity</label>
+      <input name="ingredient_qty" placeholder="Quantity">
+      <label for="ingredient_unit">Unit</label>
+      <select name="ingredient_unit">
+        <option value="dash">dash</option>
+        <option value="pinch">pinch</option>
+        <option value="smidgen">smidgen</option>
+        <option value="nip">nip</option>
+        <option value="teaspoon">teaspoon</option>
+        <option value="tablespoon">tablespoon</option>
+        <option value="fluid ounce">fluid ounce</option>
+        <option value="gill">gill</option>
+        <option value="cup">cup</option>
+        <option value="pint">pint</option>
+        <option value="quart">quart</option>
+        <option value="gallon">gallon</option>
+        <option value="milliliter">milliliter</option>
+        <option value="liter">liter</option>
+        <option value="deciliter">deciliter</option>
+
+        <option value="pound">pound</option>
+        <option value="ounce">ounce</option>
+        <option value="milligram">milligram</option>
+        <option value="gram">gram</option>
+        <option value="kilogram">kilogram</option>
+      </select>
+      <label for="ingredient_name">Name</label>
+      <input name="ingredient_name" placeholder="Ingredient">
+    </fieldset>
+    <button type="submit">Add Ingredient</button>
+    <button type="reset">Clear form</button>
+  </form>
+
   <h3>Instructions</h3>
   <p><%= recipe.instructions() %></p>
 </section>
@@ -42,7 +79,7 @@
     <fieldset>
       <legend>Change title</legend>
       <label for="title">Recipe title</label>
-      <input name="title" value='<%= recipe.title() %>' />
+      <input name="title" value="<%= recipe.title() %>" />
     </fieldset>
     <fieldset>
       <legend>Edit rating</legend>
@@ -77,4 +114,16 @@
     <button type="submit">Edit Recipe</button>
     <button type="reset">Clear form</button>
   </form>
+</section>
+<section>
+  <form action="/recipes/<%= recipe.id() %>" method="post">
+    <input hidden name="_method" value="delete">
+    <fieldset>
+      <legend>Delete this recipe: (This can't be undone!)</legend>
+      <button type="submit">Delete recipe</button>
+    </fieldset>
+  </form>
+</section>
+<section>
+  <a href="/">Back</a>
 </section>
