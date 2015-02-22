@@ -25,7 +25,6 @@ $ postgres
 
 Create the databases and tables by cd-ing into your Company_Tracker-master folder then in the terminal run the following:
 
-```
 
 ```
 $ rake db:create
@@ -34,15 +33,12 @@ $ rake db:create
 
 ```
 $ rake db:schema:load
-
 ```
 
 ```
 $ rake db:test:prepare
 ```
 
-```
-```
 
 Start the webserver:
 ```
